@@ -1,0 +1,33 @@
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.box-area {
+    width: 930px;
+}
+
+.left-box {
+    background: #FF9A08;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-box {
+    padding: 40px 30px 40px 30px;
+}
+
+::placeholder{
+    font-size: 16px;
+}
+.rounded-4{
+    border-radius: 20px;
+}
+.rounded-5{
+    border-radius: 30px;
+}

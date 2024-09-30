@@ -1,40 +1,78 @@
 <!-- Main Container -->
 <div class="container">
-    <!-- Login Container -->
-    <div class="row border rounded-5 p-3 bg-white shadow box-area">
-        <!-- Left Box -->
-        <div class="col-md-6 rounded-4 flex-column left-box">
-            <div class="featured-image mb-3">
-                <img src="/assets/signup.svg" class="img-fluid" alt="">
-            </div>
-        </div>
-        <!-- Right Box -->
-        <div class="col-md-6 right-box">
-            <div class="row align-items-center">
-                <div>
-                    <button class="btn btn-lg mt-3" [routerLink]="['/login']"> < Regresar </button>
-                    <img src="/assets/logo2.svg" class="float-end" alt="" style="width: 100px;">
-                </div>
-                <div class="header-text mb-1">
-                    <h4>Registrate ahora</h4>
-                </div>
-                <div class="input-group mb-3 mt-2">
-                    <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Username">
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Email">
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Contraseña">
-                </div>
-                <div class="input-group mb-5">
-                    <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Repetir la Contraseña">
-                </div>
-                <!-- Button -->
-                <div class="input-group mb-3">
-                    <button class="btn btn-lg btn-primary w-100 fs-6" [routerLink]="['/home']">Registrarse</button>
-                </div>
-            </div>
-        </div>
+  <!-- Login Container -->
+  <div class="row border rounded-5 p-3 bg-white shadow box-area">
+    <!-- Left Box -->
+    <div class="col-md-6 rounded-4 flex-column left-box">
+      <div class="featured-image mb-3">
+        <img src="/assets/signup.svg" class="img-fluid" alt="" />
+      </div>
     </div>
+    <!-- Right Box -->
+    <div class="col-md-6 right-box">
+      <div class="row align-items-center">
+        <div>
+          <button class="btn btn-lg mt-3" [routerLink]="['/login']">
+            < Regresar
+          </button>
+          <img
+            src="/assets/logo2.svg"
+            class="float-end"
+            alt=""
+            style="width: 100px"
+          />
+        </div>
+        <div class="header-text mb-1">
+          <h4>Registrate ahora</h4>
+        </div>
+        <form [formGroup]="signUpForm">
+          <div class="input-group mb-3 mt-2">
+            <input
+              id="userName"
+              formControlName="userName"
+              type="text"
+              class="form-control form-control-lg bg-light fs-6"
+              placeholder="Nombre de usuario"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <input
+              id="email"
+              formControlName="email"
+              type="text"
+              class="form-control form-control-lg bg-light fs-6"
+              placeholder="Email"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <input
+              id="password"
+              formControlName="password"
+              type="password"
+              class="form-control form-control-lg bg-light fs-6"
+              placeholder="Contraseña"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <input
+              id="rePassword"
+              formControlName="rePassword"
+              type="password"
+              class="form-control form-control-lg bg-light fs-6"
+              placeholder="Repetir la Contraseña"
+            />
+          </div>
+        </form>
+        <!-- Button -->
+        <div class="input-group mb-3">
+          <button
+            class="btn btn-lg btn-primary w-100 fs-6"
+            (click)="onRegister()"
+          >
+            Registrarse
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

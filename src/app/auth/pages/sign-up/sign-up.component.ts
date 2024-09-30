@@ -14,25 +14,25 @@ import Swal from 'sweetalert2';
 })
 export class SignUpComponent {
   signUpForm = this.fb.group({
-    email: ['', Validators.required,],
+    email: ['', [Validators.required,]],
     userName: [
       '',
-      Validators.required,
+      [Validators.required,
       Validators.minLength(8),
       Validators.maxLength(15),
-      // Validators.pattern(/^[a-zA-Z0-9]*$/),
+      Validators.pattern(/^[a-zA-Z0-9]*$/)],
     ],
     password: [
       '',
-      Validators.required,
+      [Validators.required,
       Validators.minLength(12),
-      Validators.maxLength(20),
+      Validators.maxLength(20),]
     ],
     rePassword: [
       '',
-      Validators.required,
+      [Validators.required,
       Validators.minLength(12),
-      Validators.maxLength(20),
+      Validators.maxLength(20),]
     ],
   });
 

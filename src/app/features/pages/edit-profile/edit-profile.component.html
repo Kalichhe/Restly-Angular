@@ -1,0 +1,32 @@
+<div class="edit-profile">
+  <h2>Editar Perfil</h2>
+
+  <!-- Foto de perfil -->
+  <div class="profile-picture">
+    <img *ngIf="profilePicture" [src]="profilePicture" alt="Foto de perfil">
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+  </div>
+
+  <div class="profile-details">
+    <!-- Nombre de usuario -->
+    <div class="form-group">
+      <label for="username">Nombre de usuario:</label>
+      <input id="username" [value]="username" (input)="onUsernameChange($event)" placeholder="Escribe tu nombre">
+    </div>
+
+    <!-- Biografía -->
+    <div class="form-group">
+      <label for="bio">Biografía:</label>
+      <textarea id="bio" [value]="bio" (input)="onBioChange($event)" maxlength="200" placeholder="Escribe tu biografía"></textarea>
+    </div>
+  </div>
+
+  <!-- Guardar cambios -->
+  <button (click)="saveProfile()">Guardar Cambios</button>
+
+  <!-- Gestión de propiedades si el usuario es propietario -->
+  <div *ngIf="isOwner" class="property-management">
+    <button (click)="navigateToProperties()">Gestión de Propiedades</button>
+  </div>
+</div>
+

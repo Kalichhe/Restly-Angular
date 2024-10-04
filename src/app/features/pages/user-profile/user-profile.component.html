@@ -1,1 +1,16 @@
-<p>user-profile works!</p>
+<div class="profile-container">
+    <h2>User Profile</h2>
+    
+    <div class="profile-image">
+      <img [src]="user.profileImage" alt="Profile Image" />
+    </div>
+    
+    <div class="profile-details">
+      <h3>{{ user.name }}</h3>
+      <p>Email: {{ user.email }}</p>
+      <p>Bio: {{ user.bio }}</p>
+    </div>
+    
+    <button routerLink="./edit-profile">Edit Profile</button>
+</div>
+  

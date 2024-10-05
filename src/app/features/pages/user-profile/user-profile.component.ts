@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-profile',
-  standalone: true,
-  imports: [],
+  selector: 'app-owner-profile',
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  styleUrls: ['./user-profile.component.css']
 })
-
 export class UserProfileComponent implements OnInit {
 
   // Definición del modelo de usuario
@@ -18,7 +16,7 @@ export class UserProfileComponent implements OnInit {
     bio: ''
   };
 
-  constructor() { }
+  constructor(private router: Router) { } // Inyecta el Router aquí
 
   ngOnInit(): void {
     this.loadUserData();
@@ -32,5 +30,9 @@ export class UserProfileComponent implements OnInit {
       email: 'john@example.com',
       bio: 'Este es un texto de biografía de ejemplo. Aquí puedes escribir hasta 200 palabras sobre ti.'
     };
+  }
+
+  editProfile(): void {
+    this.router.navigate(['/edit-profile']); // Navegar a la página de edición de perfil
   }
 }

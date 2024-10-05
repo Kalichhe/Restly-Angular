@@ -20,15 +20,15 @@ export class EditProfileComponent implements OnInit {
     this.loadUserProfile();
   }
 
-// Cargar perfil de usuario desde Supabase
+  // Cargar perfil de usuario desde Supabase
   async loadUserProfile() {
-  const userProfile = await this.supabaseService.getUserProfile(this.username); // Solo se pasa el username
-  if (userProfile) {
-    this.username = this.username; // Esto probablemente se mantenga igual
-    this.bio = userProfile.bio; // Asignar biografía
-    this.profilePicture = userProfile.profile_picture; // Asignar foto de perfil
+    const userProfile = await this.supabaseService.getUserProfile(this.username); // Solo se pasa el username
+    if (userProfile) {
+      this.username = this.username; // Esto probablemente se mantenga igual
+      this.bio = userProfile.bio; // Asignar biografía
+      this.profilePicture = userProfile.profile_picture; // Asignar foto de perfil
+    }
   }
-}
 
   // Cambiar el nombre de usuario
   onUsernameChange(event: any) {
@@ -40,15 +40,14 @@ export class EditProfileComponent implements OnInit {
     this.bio = event.target.value;
   }
 
-// Seleccionar una nueva foto de perfil
+  // Seleccionar una nueva foto de perfil
   onFileSelected(event: any): void {
-  const file = event.target.files[0];
-  if (file) {
-    this.profilePicture = URL.createObjectURL(file); // Generar una URL para mostrar la imagen
-    console.log(this.profilePicture)
+    const file = event.target.files[0];
+    if (file) {
+      this.profilePicture = URL.createObjectURL(file); // Generar una URL para mostrar la imagen
+      console.log(this.profilePicture);
+    }
   }
-}
-
 
   // Guardar cambios del perfil
   async saveProfile(): Promise<void> {
@@ -56,6 +55,7 @@ export class EditProfileComponent implements OnInit {
     
     if (success) {
       console.log('Perfil guardado correctamente');
+      this.router.navigate(['/user-profile']); // Redirigir al perfil tras guardar los cambios
     } else {
       console.log('Error al guardar el perfil');
     }
@@ -63,7 +63,7 @@ export class EditProfileComponent implements OnInit {
 
   // Redirigir a la gestión de propiedades
   navigateToProperties(): void {
-    this.router.navigate(['/property-management']);
+    this.router.navigate(['/user-owner']);
   }
 
   checkIfOwner(): boolean {

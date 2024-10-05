@@ -6,53 +6,52 @@
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-image {
+}
+
+.profile-image {
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  .profile-image img {
-    width: 100px; /* Ajusta el tamaño según sea necesario */
-    height: 100px; /* Ajusta el tamaño según sea necesario */
-    border-radius: 50%; /* Imagen circular */
-    border: 2px solid #007BFF; /* Borde azul */
-  }
-  
-  .profile-details {
+}
+
+.profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #007BFF;
+}
+
+.profile-details {
     text-align: left;
-  }
-  
-  h2 {
+}
+
+h2 {
     text-align: center;
     color: #333;
-  }
-  
-  h3 {
+}
+
+h3 {
     margin: 0;
-    color: #007BFF; /* Color del nombre */
-  }
-  
-  p {
+    color: #007BFF;
+}
+
+p {
     margin: 5px 0;
     color: #555;
-  }
-  
-  button {
+}
+
+button {
     display: block;
     width: 100%;
     padding: 10px;
     margin-top: 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007BFF; /* Botón azul */
+    background-color: #007BFF;
     color: white;
     font-size: 16px;
     cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
-  }
-  
+}
+
+button:hover {
+    background-color: #0056b3;
+}

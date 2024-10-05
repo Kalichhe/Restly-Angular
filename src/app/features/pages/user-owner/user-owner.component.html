@@ -1,0 +1,17 @@
+<div class="profile-container">
+    <h2>User Owner Profile</h2>
+    
+    <div class="profile-image">
+      <img [src]="profilePicture" alt="Profile Image" />
+    </div>
+    
+    <div class="profile-details">
+      <p><strong>Nombre:</strong> {{ username }}</p> <!-- Asegúrate de que username esté definido -->
+      <p><strong>Email:</strong> {{ email }}</p>
+      <p><strong>Bio:</strong> {{ bio }}</p>
+    </div>
+    
+    <button (click)="editProfile()">Editar Perfil</button>
+    <button (click)="editProperties()">Editar Propiedades</button>
+</div>
+  

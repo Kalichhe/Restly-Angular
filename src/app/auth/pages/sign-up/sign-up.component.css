@@ -1,4 +1,7 @@
 
+.float-end {
+    width: 100px;
+}
 
 .container {
     display: flex;
@@ -31,4 +34,3 @@
 .rounded-5{
     border-radius: 30px;
 }
-

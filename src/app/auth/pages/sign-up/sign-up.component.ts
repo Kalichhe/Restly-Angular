@@ -1,39 +1,53 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router} from '@angular/router';
 import { UserService } from '../../services/user.service';
 import Swal from 'sweetalert2';
+import { SHARED_IMPORTS } from '../../../const/shared.modules';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [SHARED_IMPORTS],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpComponent {
+
   signUpForm = this.fb.group({
-    email: ['', [Validators.required,]],
+    email: ['', [
+      Validators.required,
+      Validators.email,
+    ]],
     userName: [
       '',
-      [Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(15),
-      Validators.pattern(/^[a-zA-Z0-9]*$/)],
+      [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(15),
+        Validators.pattern(/^[a-zA-Z0-9]*$/),
+      ],
     ],
     password: [
       '',
-      [Validators.required,
-      Validators.minLength(12),
-      Validators.maxLength(20),]
+      [
+        Validators.required,
+        Validators.minLength(12),
+        Validators.maxLength(20)
+      ],
     ],
     rePassword: [
       '',
-      [Validators.required,
-      Validators.minLength(12),
-      Validators.maxLength(20),]
+      [
+        Validators.required,
+        Validators.minLength(12),
+        Validators.maxLength(20)
+      ],
     ],
+    profileOwner: ['', [
+      Validators.minLength(2),
+      Validators.maxLength(3)
+    ]],
   });
 
   constructor(
@@ -43,7 +57,6 @@ export class SignUpComponent {
   ) {}
 
   onRegister() {
-    console.log(this.signUpForm.value);
     if (!this.signUpForm.valid) {
       Swal.fire({
         text: 'Debe diligenciar todos los campos',
@@ -52,10 +65,11 @@ export class SignUpComponent {
       return;
     }
 
-    let userName = this.signUpForm.value.userName || '';
-    let email = this.signUpForm.value.email || '';
-    let password = this.signUpForm.value.password || '';
-    let rePassword = this.signUpForm.value.rePassword || '';
+    let userName = this.signUpForm.value.userName ?? '';
+    let email = this.signUpForm.value.email ?? '';
+    let password = this.signUpForm.value.password ?? '';
+    let rePassword = this.signUpForm.value.rePassword ?? '';
+    let profileOwner = this.signUpForm.value.profileOwner ?? '';
 
     if (rePassword !== password) {
       Swal.fire({
@@ -65,7 +79,12 @@ export class SignUpComponent {
       return;
     }
 
-    let response = this.userService.register({ userName, password, email });
+    let response = this.userService.register({
+      userName,
+      password,
+      email,
+      profileOwner,
+    });
     if (response.success) {
       this.router.navigateByUrl('/home');
     } else {

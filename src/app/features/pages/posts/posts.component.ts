@@ -1,28 +1,27 @@
 import { Component } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import { UserService } from '../../../auth/services/user.service';
-import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-user-profile',
+  selector: 'app-posts',
   standalone: true,
   imports: [],
-  templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  templateUrl: './posts.component.html',
+  styleUrl: './posts.component.css',
 })
-export class UserProfileComponent {
-
+export class PostsComponent {
   uploadedUrl: string = '';
   user;
   constructor(
     private postsService: PostsService,
     private userService: UserService
   ) {
-    this.user = userService.getUser();
+    this.user = this.userService.getUser();
   }
 
-  onUploadPhoto(event: Event) {
+  onUpload(event: Event) {
     Swal.fire({
       title: 'Cargando...',
       text: 'Por favor espera',
@@ -39,10 +38,13 @@ export class UserProfileComponent {
     }
     const file: File = input.files![0];
     this.postsService
-      .uploadFile(file, this.user().userName, fileName, 'profile')
+      .uploadFile(file, this.user().userName, fileName, 'restly')
       .then((response) => {
         this.uploadedUrl = response;
-        this.userService.saveProfile(this.uploadedUrl, this.user().userName);
+        this.userService.saveGalleryItem(
+          { id: fileName, url: this.uploadedUrl, comments: [] },
+          this.user().userName
+        );
         Swal.close();
       })
       .catch((error) => {
@@ -50,5 +52,4 @@ export class UserProfileComponent {
         Swal.fire('Error', 'Ocurrió un error al cargar los datos', 'error');
       });
   }
-
 }

@@ -1,4 +1,7 @@
 
+.float-end {
+    width: 100px;
+}
 
 .container {
     display: flex;

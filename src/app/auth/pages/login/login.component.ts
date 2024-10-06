@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { SHARED_IMPORTS } from '../../../const/shared.modules';
 import { UserService } from '../../services/user.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -39,20 +39,22 @@ export class LoginComponent {
   onLogin() {
     if (!this.loginForm.valid) {
       Swal.fire({
+        title: 'Ingreso',
         text: 'Debe diligenciar todos los campos',
         icon: 'error',
       });
       return;
     }
 
-    let userName = this.loginForm.value.userName || '';
-    let password = this.loginForm.value.password || '';
+    let userName = this.loginForm.value.userName ?? '';
+    let password = this.loginForm.value.password ?? '';
     let response = this.userService.login(userName, password);
 
     if (response.success) {
       this.router.navigateByUrl('/home');
     } else {
       Swal.fire({
+        title: 'Ingreso',
         text: response.message,
         icon: 'error',
       });

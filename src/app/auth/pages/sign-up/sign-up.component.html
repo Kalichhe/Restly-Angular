@@ -15,12 +15,9 @@
           <button class="btn btn-lg mt-3" [routerLink]="['/login']">
             < Regresar
           </button>
-          <img
-            src="/assets/logo2.svg"
-            class="float-end"
-            alt=""
-            style="width: 100px"
-          />
+          <a [routerLink]="['/login']">
+            <img src="/assets/logo2.svg" class="float-end" alt=""/>
+          </a>
         </div>
         <div class="header-text mb-1">
           <h4>Registrate ahora</h4>
@@ -53,13 +50,22 @@
               placeholder="Contraseña"
             />
           </div>
-          <div class="input-group mb-5">
+          <div class="input-group mb-3">
             <input
               id="rePassword"
               formControlName="rePassword"
               type="password"
               class="form-control form-control-lg bg-light fs-6"
               placeholder="Repetir la Contraseña"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <input
+              id="profileOwner"
+              formControlName="profileOwner"
+              type="text"
+              class="form-control form-control-lg bg-light fs-6"
+              placeholder="Propietario del perfil (yes/no: si/no)"
             />
           </div>
         </form>

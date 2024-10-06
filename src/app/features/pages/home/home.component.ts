@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrls: ['./home.component.css'], // Cambiado a styleUrls
 })
 export class HomeComponent {
   posts = signal(10);
@@ -20,7 +20,7 @@ export class HomeComponent {
   user;
   profilePhoto = '';
 
-  constructor(private userService: UserService) {
+  constructor(private readonly userService: UserService) {
     this.user = this.userService.getUser();
     this.galleryItems.set(this.userService.getGallery(this.user().userName));
     this.profilePhoto = this.userService.getProfile(this.user().userName);

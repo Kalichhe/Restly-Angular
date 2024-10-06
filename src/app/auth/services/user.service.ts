@@ -70,7 +70,7 @@ export class UserService {
 
   getGallery(userName: string): GalleryItem[] {
     if (typeof window !== 'undefined' && window.localStorage) {
-      let galleryStr = localStorage.getItem(`imgs-${userName}`);
+      let galleryStr = localStorage.getItem(`gallery-${userName}`);
       let gallery: GalleryItem[] = [];
       if (galleryStr) {
         gallery = JSON.parse(galleryStr);
@@ -95,7 +95,7 @@ export class UserService {
 
   updateGallery(userName: string, gallery: GalleryItem[]) {
     if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem(`imgs-${userName}`, JSON.stringify(gallery));
+      localStorage.setItem(`gallery-${userName}`, JSON.stringify(gallery));
     }
   }
 
@@ -139,7 +139,7 @@ export class UserService {
 
   getProfile(userName: string): string {
     if (typeof window !== 'undefined' && window.localStorage) {
-      return localStorage.getItem(`profile-${userName}`) || '';
+      return localStorage.getItem(`profile-${userName}`) ?? '';
     } else {
       return '';
     }

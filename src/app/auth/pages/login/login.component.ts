@@ -31,9 +31,9 @@ export class LoginComponent {
   });
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private userService: UserService
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+    private readonly userService: UserService
   ) {}
 
   onLogin() {

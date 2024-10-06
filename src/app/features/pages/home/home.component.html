@@ -1,6 +1,11 @@
 <section id="profile">
   <div>
-    <img [src]="profilePhoto || '/assets/no-avatar.png'" alt=""/>
+    <img
+      [src]="profilePhoto || '/assets/no-avatar.png'"
+      alt=""
+      width="100px"
+      height="100px"
+    />
     <span id="userName">{{ user().userName }}</span>
   </div>
   <div>
@@ -22,9 +27,8 @@
   <div class="gallery-item" *ngFor="let item of galleryItems()">
     <img [src]="item.url" alt="" />
     <div class="comments">
-      <input type="text" (change)="onAddComment($event, item.id)"/>
+      <input type="text" (change)="onAddComment($event, item.id)" />
       <a (click)="onComment(item.comments)"><i class="fas fa-comments"></i></a>
-      <a (click)="onDelete(item.id)"><i class="fas fa-trash-alt"></i></a>
     </div>
   </div>
 </section>

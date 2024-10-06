@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environments.developments';
   providedIn: 'root',
 })
 export class PostsService {
-  private supabase: SupabaseClient;
+  private readonly supabase: SupabaseClient;
 
   constructor() {
     this.supabase = createClient(

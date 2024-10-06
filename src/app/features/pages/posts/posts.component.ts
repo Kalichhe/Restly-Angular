@@ -15,8 +15,8 @@ export class PostsComponent {
   uploadedUrl: string = '';
   user;
   constructor(
-    private postsService: PostsService,
-    private userService: UserService
+    private readonly postsService: PostsService,
+    private readonly userService: UserService
   ) {
     this.user = this.userService.getUser();
   }

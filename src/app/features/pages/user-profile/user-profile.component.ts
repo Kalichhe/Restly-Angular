@@ -1,25 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import { UserService } from '../../../auth/services/user.service';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
+import { GalleryItem } from '../../interfaces/gallery-item.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent {
+  posts = signal(10);
+  followers = 5;
+  requests = 150;
+  galleryItems = signal<GalleryItem[]>([]);
 
-  uploadedUrl: string = '';
   user;
+  profilePhoto = '';
+  uploadedUrl: string = '';
+
+  updateForm = this.fb.group({
+    userName: [''],
+    email: [''],
+    bio: [''],
+  })
+
+
   constructor(
-    private postsService: PostsService,
-    private userService: UserService
+    private readonly fb: FormBuilder,
+    private readonly postsService: PostsService,
+    private readonly userService: UserService
   ) {
-    this.user = userService.getUser();
+    this.user = this.userService.getUser();
+    this.galleryItems.set(this.userService.getGallery(this.user().userName));
+    this.profilePhoto = this.userService.getProfile(this.user().userName);
   }
 
   onUploadPhoto(event: Event) {
@@ -51,4 +70,51 @@ export class UserProfileComponent {
       });
   }
 
+
+  onAddComment(event: Event, id: string) {
+    const input = event.target as HTMLInputElement;
+    if (!input.value) {
+      return;
+    }
+    this.galleryItems.update((items) => {
+      let selected = items.find((item) => item.id === id);
+      if (selected) {
+        selected.comments = [...selected.comments, input.value];
+      }
+      return items;
+    });
+    this.userService.updateGallery(
+      this.user().userName,
+      this.galleryItems()
+    );
+    input.value = '';
+  }
+
+  onDelete(id: string) {
+    Swal.fire({
+      text: '¿Está seguro de eliminar la imagen seleccionada?',
+      icon: 'warning',
+      iconColor: '#219ebc',
+      showCancelButton: true,
+      confirmButtonColor: '#023047',
+      cancelButtonColor: '#d00000',
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.galleryItems.update((items) =>
+          items.filter((item) => item.id !== id)
+        );
+        this.userService.updateGallery(
+          this.user().userName,
+          this.galleryItems()
+        );
+        this.posts.update(() => this.galleryItems().length);
+      }
+    });
+  }
+
+  onSaveProfile() {
+
+  }
 }

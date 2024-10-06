@@ -1,12 +1,12 @@
 <header>
-  @if(user().profileOwner === '' || user().profileOwner === 'no') {
+  @if(user().profileOwner === 'no') {
   <nav aria-label="user">
     <ul>
       <li><a>Restly</a></li>
       <li><a [routerLink]="['/home']">Inicio</a></li>
       <li><a [routerLink]="['/user-profile']">Mi perfil</a></li>
       <li><a [routerLink]="['/search']">Buscar</a></li>
-      <li><a (click)="logout()">Cerrar sesión</a></li>
+      <li><a (click)="logout()" id="logout">Cerrar sesión</a></li>
     </ul>
   </nav>
   } @else { @if (user().profileOwner === 'yes' || user().profileOwner === 'si')
@@ -18,7 +18,7 @@
       <li><a [routerLink]="['/user-profile']">Mi perfil</a></li>
       <li><a [routerLink]="['/search']">Buscar</a></li>
       <li><a [routerLink]="['/posts']">Nueva publicación</a></li>
-      <li><a (click)="logout()">Cerrar sesión</a></li>
+      <li><a (click)="logout()" id="logout">Cerrar sesión</a></li>
     </ul>
   </nav>
   } @else {

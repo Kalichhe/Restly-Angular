@@ -50,7 +50,7 @@ export class UserService {
     });
   }
 
-  saveImage(id: string, url: string, userName: string) {
+  Image(id: string, url: string, userName: string) {
     if (typeof window !== 'undefined' && window.localStorage) {
       const newImage: GalleryItem = {
         id,
@@ -106,12 +106,28 @@ export class UserService {
       }
       const userSrt = JSON.stringify(user);
       localStorage.setItem(user.userName.toLowerCase().trim(), userSrt);
+      console.log();
+
       this.setUser(user);
       return { success: true };
     } else {
       return { success: false, message: 'localStorage no está disponible' };
     }
   }
+
+  updateProfile(userName: string, email: string, bio: string) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const userSrt = localStorage.getItem(this.userSignal().userName);
+      if (userSrt) {
+        const user: User = JSON.parse(userSrt);
+        user.userName = userName.toLowerCase().trim();
+        user.email = email;
+        user.bio = bio;
+        localStorage.setItem(userName.toLowerCase().trim(), JSON.stringify(user));
+      this.setUser(user);
+    }
+  }}
+
 
   private setUser(user: User) {
     if (typeof window !== 'undefined' && window.localStorage) {

@@ -25,45 +25,39 @@
     <span>Solicitudes</span>
   </div>
 </section>
-<section>
-  <div>
-    <form [formGroup]="updateForm">
-      <div class="input-group mb-3 mt-2">
-        <input
-          id="userName"
-          type="text"
-          formControlName="userName"
-          class="form-control form-control-lg bg-light fs-6"
-          placeholder="Username"
-        />
-      </div>
-      <div class="input-group mb-5">
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          class="form-control form-control-lg bg-light fs-6"
-          placeholder="Email"
-        />
-      </div>
-      <div class="input-group mb-5">
-        <input
-          id="bio"
-          type="text"
-          formControlName="bio"
-          class="form-control form-control-lg bg-light fs-6"
-          placeholder="Biografia"
-        />
-      </div>
-    </form>
-    <!-- Button -->
-    <div class="input-group mb-3">
-      <button
-        class="btn btn-lg btn-primary w-100 fs-6"
-        (click)="onSaveProfile()"
-      >
-        Actualizar
-      </button>
-    </div>
+
+<form [formGroup]="updateForm">
+  <div class="input-group mb-3 mt-2">
+    <input
+      id="userName"
+      type="text"
+      formControlName="userName"
+      class="form-control form-control-lg bg-light fs-6"
+      placeholder="{{user().userName}}"
+    />
   </div>
-</section>
+  <div class="input-group mb-3">
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      class="form-control form-control-lg bg-light fs-6"
+      placeholder="{{user().email}}"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      id="bio"
+      type="text"
+      formControlName="bio"
+      class="form-control form-control-lg bg-light fs-6"
+      placeholder="{{user().bio}}"
+    />
+  </div>
+</form>
+<!-- Button -->
+<div class="input-group mb-3">
+  <button class="btn btn-lg btn-primary w-100 fs-6" (click)="onSaveProfile()">
+    Actualizar
+  </button>
+</div>

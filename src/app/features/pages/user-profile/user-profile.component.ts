@@ -15,6 +15,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent {
+
+  updateForm = this.fb.group({
+    userName: [''],
+    email: [''],
+    bio: [''],
+  });
+
   posts = signal(10);
   followers = 5;
   requests = 150;
@@ -23,13 +30,6 @@ export class UserProfileComponent {
   user;
   profilePhoto = '';
   uploadedUrl: string = '';
-
-  updateForm = this.fb.group({
-    userName: [''],
-    email: [''],
-    bio: [''],
-  })
-
 
   constructor(
     private readonly fb: FormBuilder,
@@ -115,6 +115,21 @@ export class UserProfileComponent {
   }
 
   onSaveProfile() {
+
+    let userName = this.updateForm.value.userName ?? '';
+    let email = this.updateForm.value.email ?? '';
+    let bio = this.updateForm.value.bio ?? '';
+
+    this.userService.updateProfile(
+      userName,
+      email,
+      bio,
+    );
+    Swal.fire({
+      title: 'Perfil',
+      text: 'Perfil actualizado correctamente',
+      icon: 'success',
+    });
 
   }
 }

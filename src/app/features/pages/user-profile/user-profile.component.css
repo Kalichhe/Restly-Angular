@@ -24,7 +24,7 @@
 }
 
 
-input {
+#profile input {
   display: none;
 }
 
@@ -32,3 +32,9 @@ label {
   cursor: pointer;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}

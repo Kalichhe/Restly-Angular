@@ -24,7 +24,7 @@ export class PostsComponent {
     numberRooms: ['', [Validators.required]],
     bathrooms: ['', [Validators.required]],
     capacity: ['', [Validators.required]],
-  });
+  })
 
   constructor(
     private readonly fb: FormBuilder,
@@ -54,7 +54,10 @@ export class PostsComponent {
       .uploadFile(file, this.user().userName, fileName, 'restly')
       .then((response) => {
         this.uploadedUrl = response;
-
+        this.userService.saveGalleryItem(
+          { id: fileName, url: this.uploadedUrl, comments: [] },
+          this.user().userName
+        );
         Swal.close();
       })
       .catch((error) => {
@@ -79,24 +82,14 @@ export class PostsComponent {
       });
       return;
     }
-    this.userService.saveGalleryItem(
-      { id: __filename, url: this.uploadedUrl, comments: [] },
-      this.user().userName
-    );
 
-    this.userService.postListing(
-      title,
-      description,
-      direction,
-      priceNight,
-      numberRooms,
-      bathrooms,
-      capacity
-    );
+    this.userService.postListing(title, description, direction, priceNight, numberRooms, bathrooms, capacity);
     Swal.fire({
       title: 'Propiedad',
       text: 'Propiedad creada con éxito',
       icon: 'success',
     });
+
   }
+
 }

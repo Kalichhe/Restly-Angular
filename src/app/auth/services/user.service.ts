@@ -150,7 +150,7 @@ export class UserService {
         listings = JSON.parse(listingsStr);
       }
       listings = [...listings, newListing];
-      localStorage.setItem('listings', JSON.stringify(listings));
+      localStorage.setItem(`listings-${title}`, JSON.stringify(listings));
     }
   }
 

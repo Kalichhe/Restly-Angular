@@ -1,5 +1,87 @@
-<section>
-  <label for="fileToUpload">Seleccione un archivo</label>
+
+<section id="photo" class="container">
+  <label for="fileToUpload">
+    <div>
+      <img
+        [src]="uploadedUrl || '/assets/no-avatar.png'"
+        alt=""
+        width="100px"
+        height="100px"
+      />
+    </div>
+  </label>
   <input type="file" (change)="onUpload($event)" id="fileToUpload" />
-  <img [src]="uploadedUrl" alt="" />
+</section>
+<section id="listingForm">
+  <form [formGroup]="listingForm">
+    <div class="input-group mb-3 mt-2">
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="Titulo de la propiedad"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        id="description"
+        type="text"
+        formControlName="description"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="Descripcion de la propiedad"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        id="direction"
+        type="text"
+        formControlName="direction"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="Direccion de la propiedad"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        id="priceNight"
+        type="number"
+        formControlName="priceNight"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="Precio la noche"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        id="numberRooms"
+        type="number"
+        formControlName="numberRooms"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="Numero de habitaciones"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        id="bathrooms"
+        type="number"
+        formControlName="bathrooms"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="Numero de baños"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        id="capacity"
+        type="number"
+        formControlName="capacity"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="Capacidad de personas"
+      />
+    </div>
+  </form>
+
+  <div id="buttonUpdate" class="input-group mb-3">
+    <button class="btn btn-lg btn-primary w-100 fs-6" (click)="onSaveListing()">
+      Publicar
+    </button>
+  </div>
 </section>

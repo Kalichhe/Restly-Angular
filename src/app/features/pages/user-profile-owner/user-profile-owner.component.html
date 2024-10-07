@@ -1,0 +1,75 @@
+<section id="profile">
+  <div>
+    <label for="fileToUpload">
+      <img
+        [src]="profilePhoto || '/assets/no-avatar.png'"
+        alt=""
+        width="100px"
+        height="100px"
+      />
+    </label>
+    <input type="file" (change)="onUploadPhoto($event)" id="fileToUpload" />
+  </div>
+  <div>
+    <span>
+      {{ galleryItems().length }}
+    </span>
+    <span>Publicaciones</span>
+  </div>
+  <div>
+    <span>{{ followers }}</span>
+    <span>Seguidores</span>
+  </div>
+  <div>
+    <span>{{ requests }}</span>
+    <span>Solicitudes</span>
+  </div>
+</section>
+
+<section id="update" class="update-section">
+  <form [formGroup]="updateForm">
+    <div class="input-group mb-3 mt-2">
+      <input
+        id="userName"
+        type="text"
+        formControlName="userName"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="{{ user().userName }}"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="{{ user().email }}"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        id="bio"
+        type="text"
+        formControlName="bio"
+        class="form-control form-control-lg bg-light fs-6"
+        placeholder="{{ user().bio }}"
+      />
+    </div>
+  </form>
+
+  <div id="buttonUpdate" class="input-group mb-3">
+    <button class="btn btn-lg btn-primary w-100 fs-6" (click)="onSaveProfile()">
+      Actualizar
+    </button>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="gallery-item" *ngFor="let item of galleryItems()">
+    <img [src]="item.url" alt="" />
+    <div class="comments">
+      <input type="text" (change)="onAddComment($event, item.id)" />
+      <a (click)="onDelete(item.id)"><i class="fas fa-trash-alt"></i></a>
+    </div>
+  </div>
+</section>

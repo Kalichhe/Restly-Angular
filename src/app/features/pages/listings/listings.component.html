@@ -1,1 +1,8 @@
-<p>listings works!</p>
+<section id="gallery">
+  <div class="gallery-item" *ngFor="let item of galleryItems()">
+    <img [src]="item.url" alt="" />
+    <div class="comments">
+      <a (click)="onDelete(item.id)"><i class="fas fa-trash-alt"></i></a>
+    </div>
+  </div>
+</section>

@@ -1,20 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { GalleryItem } from '../../interfaces/gallery-item.interface';
 import { PostsService } from '../../services/posts.service';
 import { UserService } from '../../../auth/services/user.service';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
-import { GalleryItem } from '../../interfaces/gallery-item.interface';
-import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-user-profile',
+  selector: 'app-user-profile-owner',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css',
+  templateUrl: './user-profile-owner.component.html',
+  styleUrl: './user-profile-owner.component.css',
 })
-export class UserProfileComponent {
+export class UserProfileOwnerComponent {
   updateForm = this.fb.group({
     userName: [
       '',
@@ -128,7 +128,6 @@ export class UserProfileComponent {
       });
       return;
     }
-
     this.userService.updateProfile(userName, email, bio);
     Swal.fire({
       title: 'Perfil',

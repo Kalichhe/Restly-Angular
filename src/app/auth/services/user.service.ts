@@ -5,6 +5,7 @@ import {
   LoginResponse,
   SignUpResponse,
 } from '../interfaces/login-response.interface';
+import { Listing } from '../interfaces/listings.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -123,11 +124,35 @@ export class UserService {
         user.userName = userName.toLowerCase().trim();
         user.email = email;
         user.bio = bio;
-        localStorage.setItem(userName.toLowerCase().trim(), JSON.stringify(user));
-      this.setUser(user);
+        localStorage.setItem(
+          userName.toLowerCase().trim(),
+          JSON.stringify(user)
+        );
+        this.setUser(user);
+      }
     }
-  }}
+  }
 
+  postListing(title: string, description: string, direction: string, priceNight: number, numberRooms: number, bathrooms: number, capacity: number) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const newListing: Listing = {
+        title,
+        description,
+        direction,
+        priceNight,
+        numberRooms,
+        bathrooms,
+        capacity,
+      };
+      let listingsStr = localStorage.getItem('listings');
+      let listings: Listing[] = [];
+      if (listingsStr) {
+        listings = JSON.parse(listingsStr);
+      }
+      listings = [...listings, newListing];
+      localStorage.setItem('listings', JSON.stringify(listings));
+    }
+  }
 
   private setUser(user: User) {
     if (typeof window !== 'undefined' && window.localStorage) {

@@ -53,7 +53,7 @@ export class UserProfileComponent {
       text: 'Por favor espera',
       allowOutsideClick: false,
       didOpen: () => {
-        Swal.showLoading();
+        Swal.showLoading(null);
       },
     });
 

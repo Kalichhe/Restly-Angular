@@ -5,17 +5,19 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { PostsService } from '../../services/posts.service';
 import { UserService } from '../../../auth/services/user.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listings',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './listings.component.html',
   styleUrl: './listings.component.css'
 })
 export class ListingsComponent {
-
   galleryItems = signal<GalleryItem[]>([]);
+  filteredGalleryItems: GalleryItem[] = [];
+  searchQuery: string = '';
   user;
   posts = signal(10);
 
@@ -26,8 +28,21 @@ export class ListingsComponent {
   ) {
     this.user = this.userService.getUser();
     this.galleryItems.set(this.userService.getGallery(this.user().userName));
+    this.filteredGalleryItems = this.galleryItems(); // Inicializamos la lista filtrada
   }
 
+  // Método llamado por el botón de búsqueda
+  onSearch() {
+    this.filterGallery(); // Llama a la lógica de filtrado
+  }
+
+  // Filtra las imágenes basándose en el texto de búsqueda
+  filterGallery() {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredGalleryItems = this.galleryItems().filter((item) =>
+      item.url.toLowerCase().includes(query)
+    );
+  }
 
   onDelete(id: string) {
     Swal.fire({
@@ -44,6 +59,7 @@ export class ListingsComponent {
         this.galleryItems.update((items) =>
           items.filter((item) => item.id !== id)
         );
+        this.filteredGalleryItems = this.galleryItems();
         this.userService.updateGallery(
           this.user().userName,
           this.galleryItems()
@@ -52,5 +68,4 @@ export class ListingsComponent {
       }
     });
   }
-
 }

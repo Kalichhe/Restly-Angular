@@ -1,8 +1,20 @@
-<section id="gallery">
+<section class="main-content">
+  <div class="search-container">
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Buscar propiedades..."
+      [(ngModel)]="searchQuery"
+    />
+  </div>
+
   <div class="gallery-item" *ngFor="let item of galleryItems()">
-    <img [src]="item.url" alt="" />
+    <img [src]="item.url" alt="Gallery item" />
     <div class="comments">
-      <a (click)="onDelete(item.id)"><i class="fas fa-trash-alt"></i></a>
+      <a (click)="onDelete(item.id)">
+        <i class="fas fa-trash-alt"></i>
+      </a>
     </div>
   </div>
 </section>
+

@@ -39,9 +39,6 @@ export class PostsComponent {
       title: 'Cargando...',
       text: 'Por favor espera',
       allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-      },
     });
 
     const fileName = uuidv4();

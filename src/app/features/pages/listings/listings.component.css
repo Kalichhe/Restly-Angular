@@ -9,7 +9,8 @@
   
   /* Styling for the search input */
 .search-input {
-    width: 100%;
+    width: 110%;
+    max-width: 200px;
     padding: 12px 24px;
     font-size: 12px;
     line-height: 18px;

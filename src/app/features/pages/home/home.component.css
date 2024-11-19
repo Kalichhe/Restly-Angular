@@ -1,0 +1,21 @@
+<<<<<<< Updated upstream
+=======
+.fas {
+  color: black;
+}
+
+.btn-properties {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.btn-properties:hover {
+  background-color: #0056b3;
+}
+>>>>>>> Stashed changes
